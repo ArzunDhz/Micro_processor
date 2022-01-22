@@ -1,5 +1,7 @@
 ________________________________________1________________________________________
-
+MVI A,04H;
+MOV C,A;
+HLT
 
 ________________________________________2________________________________________
 MVI A ,04H
@@ -41,3 +43,7 @@ IN 01H; INPUT DATA FORM DATA FORM ADDRESS 01H
 OUT 20H;OUTPUT THE DATA FORM PORT ACCUMULATOR TO PORT ADDRESS 02H
 HLT;STOP THE PROGRAM
 ________________________________________8________________________________________
+LXI H,9100H
+MOV A,M;
+OUT 05
+HLT
