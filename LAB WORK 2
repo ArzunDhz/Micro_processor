@@ -16,7 +16,15 @@ STA 9120H;
 HLT
 
 _______________3________________
-
+LXI B,2020H;
+MOV A,C;
+LXI D,3025H;
+ADD E;
+MOV L,A
+MOV A,B;
+ADD D;
+MOV H,A
+HLT
 
 _______________4________________
 MVI H,09H
