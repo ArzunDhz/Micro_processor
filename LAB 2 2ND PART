@@ -1,0 +1,39 @@
+_______________________1______________________
+
+#ORG 3000H
+#BEGIN 3000H
+
+
+
+MVI B , 05H
+MVI C ,09H;
+MOV A,B;
+ANA C;
+STA 3100H;
+
+
+MVI B , 05H
+MVI C ,09H;
+MOV A,B;
+ORA C;
+STA 3101H
+
+
+MVI B , 05H
+MVI C ,09H;
+MOV A,B;
+XRA C;
+STA 3102H
+HLT
+
+_______________________2______________________
+#ORG 3000H
+#BEGIN 3000H
+
+LDA 0000H;
+MVI B, 0FH;
+ANA B;
+MOV C,A;
+HLT
+
+_______________________3______________________
