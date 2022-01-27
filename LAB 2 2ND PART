@@ -79,7 +79,18 @@ MOV D,A;
 HLT
 
 
+_______________________6______________________
 
+#ORG 3000H
+#BEGIN 3000H
+
+
+MVI A,FFH;
+MOV C,A;
+MVI B ,FEH
+ANA B;
+MOV D,A;
+HLT
 
 
 
