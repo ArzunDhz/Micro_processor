@@ -37,3 +37,50 @@ MOV C,A;
 HLT
 
 _______________________3______________________
+#ORG 3000H
+#BEGIN 3000H
+
+LDA 0000H;
+MVI B, F0H;
+ANA B;
+MOV C,A;
+HLT
+#ORG 3000H
+#BEGIN 3000H
+
+
+
+
+_______________________4______________________
+
+MVI A,5A;
+STA 2049H;
+MVI B, F0H;
+ANA B;
+STA 2050H;
+MVI A,5A;
+MVI B, 0FH;
+ANA B;
+STA 2051H
+HLT
+
+
+
+_______________________5______________________
+#ORG 3000H
+#BEGIN 3000H
+
+
+MVI A,7AH;
+
+MVI B,DFH
+ANA B;
+MOV D,A;
+HLT
+
+
+
+
+
+
+
