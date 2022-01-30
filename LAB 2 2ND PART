@@ -93,5 +93,49 @@ MOV D,A;
 HLT
 
 
+______________________7___________________________
+#ORG 3000
+#BEGIN 3000
 
+MVI A,5E;
+MOV C,A;
+MVI B,20H;
+ORA B;;
+MOV B,A;
+MOV A,C
+HLT
 
+_________________8_______________________________
+#ORG 3000
+#BEGIN 3000
+
+MVI A,5E
+MOV C,A
+MVI B,F7H
+ANA B;
+MOV B,A
+MOV A,C
+HLT
+__________________9_______________________
+#ORG 3000
+#BEGIN 3000
+
+MVI A,D4H
+MOV D,A
+MVI B,29H
+ORA B;
+MOV E,A
+
+HLT
+
+______________10_________________________
+#ORG 3000
+#BEGIN 3000
+
+MVI A,F7H
+MOV D,A
+MVI B,9AH
+ANA B;
+MOV E,A
+
+HLT
