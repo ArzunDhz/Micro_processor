@@ -44,3 +44,19 @@ YES:	   INR C
 	   MOV A,C
 	   STA 9104
 	   HLT
+______________________________________4________________________
+
+# ORG 0000H
+# BEGIN 0000H
+	   MVI C,00
+	   MVI A,FF
+	   MVI B,FE
+	   SUB B
+	   JC YES
+	   STA 2050
+	   HLT
+
+YES:	   INR C
+	   STA 2050
+                           MOV D,C
+	   HLT
