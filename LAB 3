@@ -29,3 +29,18 @@ CARRY:	   INR C
 	   SHLD 3050
 	   HLT
 ______________________________3_______________________
+# ORG 0000HH
+# BEGIN 0000H
+	   LDA 9101
+	   MOV B,A
+	   LDA 9102
+	   ADD B
+	   JC YES
+	   STA 9103
+	   HLT
+
+YES:	   INR C
+	   STA 9103
+	   MOV A,C
+	   STA 9104
+	   HLT
