@@ -21,9 +21,9 @@ ______________________2______________________
 	   XCHG
 	   LHLD 2052
 	   DAD D
-	   MOV A,M
 	   JC CARRY
 	   SHLD 3050
+	   HLT
 
 CARRY:	   INR C
 	   SHLD 3050
@@ -58,5 +58,92 @@ ______________________________________4________________________
 
 YES:	   INR C
 	   STA 2050
-                           MOV D,C
+           MOV D,C
 	   HLT
+__________________________________5________________________________________
+# ORG 0000H
+# BEGIN 0000H
+	   MVI C,00
+	   LHLD 2050
+	   XCHG
+	   LHLD 2052
+	   MOV A,L
+	   SUB E
+	   MOV L,A
+	   JC YES
+           SHLD 2000
+
+YES:	   INR C
+	   MOV A,D
+	   SUB H
+	   MOV H,A
+	   SHLD 2000
+	   HLT
+
+____________________6__________________________________________________________
+
+# ORG 0000H
+# BEGIN 0000H
+	   MVI C,FF
+	   MVI D,05
+	   MOV A,D
+	   SUB C
+	   MOV H,A
+	   JC YES
+	   HLT
+
+YES:	   INR L
+	   HLT
+	   
+	   
+_________________7_____________________________________
+
+# ORG 0000H
+# BEGIN 0000H
+
+INR A ; 
+JMP 0000H;
+HLT
+
+
+_____________________8________________________________________
+# ORG 0000H
+# BEGIN 0000H
+	   MVI C,FF
+	   MVI D,05
+	   MOV A,D
+	   SUB C
+	   MOV H,A
+	   JC YES
+	   HLT
+
+YES:	   INR L
+	   HLT
+
+_______________________9_______________________________________-
+# ORG 0000H
+# BEGIN 0000H
+
+MVI A ,01
+MVI D , 01
+SUB D 
+JPE YES
+INR B
+HLT
+YES: INR C
+HLT
+
+______________________10_______________________________
+# ORG 0000H
+# BEGIN 0000H
+
+MVI A ,FF
+MVI D , FF
+ADD D 
+JM YES
+INR C;
+HLT
+YES: STA 2000H;
+HLT
+
+
