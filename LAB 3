@@ -67,11 +67,15 @@ __________________________________5________________________________________
 	   LHLD 2050
 	   XCHG
 	   LHLD 2052
-	   MOV A,L
-	   SUB E
+	   MOV A,E
+	   SUB L
 	   MOV L,A
 	   JC YES
-           SHLD 2000
+	   MOV A,D
+	   SUB H
+	   MOV H,A
+	   SHLD 2000
+	   HLT
 
 YES:	   INR C
 	   MOV A,D
