@@ -1,0 +1,74 @@
+_________________1__________________________
+
+# ORG 0000
+# BEGIN 0000
+	   MVI A,A4
+	   MVI B,CE
+	   ADD B
+	   JC NEXT
+	   STA 2050
+	   OUT 2A
+	   HLT
+
+NEXT:CMA
+	   MVI C,F0
+	   ANA C
+	   OUT 2A
+	   MOV C,A
+	   JPE HONK
+	   HLT
+
+HONK:STA 2050
+	   OUT 2A
+	   HLT
+
+_______________2__________________
+# ORG 0000
+# BEGIN 0000
+	   MVI A,EF
+	   MVI B,00
+	   ANA B
+	   JZ YES
+	   CMA
+	   MOV D,A
+	   HLT
+
+YES:	   JM YESS
+	   MVI B,08
+	   ADD B
+	   MOV D,A
+	   HLT
+
+YESS:	   CMA
+	   MOV D,A
+	   HLT
+__________3________________________-
+# ORG 0000
+# BEGIN 0000
+	   MVI A,7F
+	   MVI B,AB
+	   JPO YESODD
+	   JC YESCARRY
+	   CMA
+	   MOV B,A
+	   HLT
+
+YESCARRY:	   CMA
+	   MVI B,45
+	   ADC B
+	   STA 30FA
+	   HLT
+
+YESODD:	   JC YESPOSITIVE
+	   CMA
+	   INR A
+	   STA 1050
+	   HLT
+
+YESPOSITIVE: MOV D,A
+	   MVI E,5F
+	   MOV A,E
+	   CMA
+	   SUB D
+	   MOV E,A
+	   HLT
