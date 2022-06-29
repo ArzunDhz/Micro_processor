@@ -163,8 +163,7 @@ end main
 .data
 msg db 10,13,"Shawty’s like a melody in my head that I can’t keep out Got me singin’ like$"
 .code
-
-main proc
+ main proc
 mov ax,@data
 mov ds,ax
 
@@ -187,15 +186,65 @@ main endp
 end
 
 
+2.	Write an assembly language program in 8086 to display:
+“Que neustra cancion no deje de latir, Solo con tu amor yo puedo existir (recuerdame).”
+“Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare.”
+
+
+.model small
+.stack 100h
+.data 
+msg1 db 10,13,"Que neustra cancion no deje de latir, Solo con tu amor yo puedo existir (recuerdame).$"
+msg2 db 10,13,"Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare.$"
+
+
+.code 
+main proc
+mov ax,@data
+mov ds ,ax
+
+lea dx,msg1
+ mov ah,09h    //displaying 1st message 
+  int 21h
+
+lea dx,msg2
+ mov ah,09h    //displaying 2nd message 
+  int 21h
+
+main endp
+end
 
 
 
+2.	Write an assembly language program in 8086 to print the following string in reverse:
+“Supercalifragilisticexpialidocious coz you’re an alien you’re thought so foreign”
+(Length of string: 80)
 
 
+.model small
+.data
+msg db 10,13,"Supercalifragilisticexpialidocious coz you’re an alien you’re thought so foreign$"
+.code
+mov ax,@data
+mov ds,ax
+ main proc
+
+mov si, offset msg
+mov cx,80
+loop1 :  mov bx,[si]
+     	 push bx
+         inc si
+loop loop1
 
 
+mov cx,75
+ loop2: pop dx
+        mov ah,02
+        int 21h
+loop loop2
 
-
+main endp
+end
 
 
 
