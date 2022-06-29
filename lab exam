@@ -146,7 +146,7 @@ lea dx,msg4
   int 21h
 
 
-equal :lea dx,msg3
+equal:lea dx,msg3
        mov ah,09h    //displaying 3rd message 
        int 21h
 
@@ -192,7 +192,6 @@ end
 
 
 .model small
-.stack 100h
 .data 
 msg1 db 10,13,"Que neustra cancion no deje de latir, Solo con tu amor yo puedo existir (recuerdame).$"
 msg2 db 10,13,"Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare.$"
