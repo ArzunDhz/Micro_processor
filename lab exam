@@ -163,9 +163,11 @@ end main
 .data
 msg db 10,13,"Shawty’s like a melody in my head that I can’t keep out Got me singin’ like$"
 .code
+
+main proc
 mov ax,@data
 mov ds,ax
- main proc
+
 
 mov si, offset msg
 mov cx,75
