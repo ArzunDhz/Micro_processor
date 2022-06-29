@@ -103,6 +103,40 @@ ret
 
 
 
+
+
+
+1.	A set of 10 readings is stored from memory location 2050H. The readings are expected to be POSITIVE.
+Write an assembly language program in 8085 to
+-	Check each reading to determine whether it is positive or negative.
+-	Reject all negative readings.
+-	Add all the positive readings and display the sum at the output port 05H. 
+
+
+
+LXI H,2050
+MVI B, 00H
+MVI D, 0AH
+
+Loop1: MOV A, M
+RAL
+JC skip
+RAR
+ADD B
+
+MOV B, A
+
+skip: INX H
+      DCR D
+
+JNZ Loop1
+
+MOV A, B
+OUT PORT 05h
+HLT
+
+
+
 2.	Write a program in 8086 assembly language to check if two entered single digit numbers are EQUAL or NOT. 
 Your program should display the message, “YUP. THE TWO NUMBERS ARE EQUAL” if the two entered numbers are equal
 OR
