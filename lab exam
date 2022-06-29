@@ -132,7 +132,7 @@ skip: INX H
 JNZ Loop1
 
 MOV A, B
-OUT PORT 05h
+OUT  05h
 HLT
 
 
@@ -141,9 +141,7 @@ HLT
 Your program should display the message, “YUP. THE TWO NUMBERS ARE EQUAL” if the two entered numbers are equal
 OR
 display the message, “NOPE. THE TWO NUMBERS ARE NOT EQUAL.”
-
 .model small
-.stack 100h
 .data 
 msg1 db 10,13,"1st no  =$"
 msg2 db 10,13,"2nd no  =$"
@@ -156,32 +154,34 @@ mov ax,@data
 mov ds ,ax
 
 lea dx,msg1
- mov ah,09h    //displaying 1st message 
+ mov ah,09h    
   int 21h
 
 mov ah,01h
-int 21h
+int 21h 
+
 mov cl,al
 
 lea dx,msg2
- mov ah,09h    //displaying 2nd message 
+ mov ah,09h   
   int 21h
 
 mov ah,01h
 int 21h
-mov dl,al
 
 
-cmp cl,dl
+
+cmp cl,al
 je equal
 
 lea dx,msg4
- mov ah,09h    //displaying 4th message 
+ mov ah,09h    
   int 21h
-
+       
+       hlt
 
 equal:lea dx,msg3
-       mov ah,09h    //displaying 3rd message 
+       mov ah,09h    
        int 21h
 
 main endp
