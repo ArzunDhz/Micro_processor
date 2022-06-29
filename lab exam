@@ -1,0 +1,200 @@
+
+1.	Write an assembly program in 8085 to add the two numbers: 80H and FFH. 
+Then perform the following conditions:
+Conditions:
+Check if the resultant is POSITIVE or NEGATIVE.
+i.	If POSITIVE:
+a.	Add the resultant with itself.
+b.	Check if carry exists or not.
+c.	If CARRY:
+•	Complement A’s content.
+•	Rotate left without carry 5 times.
+•	Store the result in D register.
+•	Terminate
+If NO CARRY:
+•	Rotate right with carry 3 times.
+•	Store the result in D register.
+•	Terminate.
+ii.	If NEGATIVE:
+a.	Add the result with itself.
+b.	Complement A’s content.
+c.	Rotate left without carry 5 times.
+d.	Store the result in D register.
+e.	Terminate.
+
+mvi a,80h
+adi ffh
+jp pos
+
+add a
+cma 
+rlc
+rlc
+rlc
+rlc
+rlc
+mov d,a
+hlt
+
+pos: jc carry
+
+rrl
+rrl
+rrl
+mov d,a
+hlt
+
+carry: 
+cma
+rlc
+rlc
+rlc
+rlc
+rlc
+mov d,a
+hlt 
+
+
+1.	Use subroutine to compute the following in 8085 assembly language:
+04H × (04H + 05H – FFH + ABH – EFH + F7H) and save the resultant at the location 3050H.
+-	Check for Sign and Carry Flags.
+-	If both are SET, store the carry and sign bits at register C and L respectively.
+-	Then create another subroutine to multiply the resultant value at 3050H with 0AH and store the result at 3051H.
+
+
+mvi b,04h
+mvi a,00h
+call function
+
+function: 
+	adi 04h
+        adi 05
+	adi abh
+	adi f7h
+	sbi ff
+	sbi efh
+	ret
+	mov c,a;
+	mvi a,00;
+
+loop:
+	add c;
+	dcr b
+	jnz loop
+
+jp skip
+ inr l ;
+
+skip: jnc skip2
+      inr c ;
+
+skip2: 
+mov d,a
+lda 3050
+mov b,a
+mvi a,00h
+call multiply 
+sta 3051h
+multiply:
+     loop2: add d
+            dcr b
+	    jnz loop2
+ret
+
+
+
+2.	Write a program in 8086 assembly language to check if two entered single digit numbers are EQUAL or NOT. 
+Your program should display the message, “YUP. THE TWO NUMBERS ARE EQUAL” if the two entered numbers are equal
+OR
+display the message, “NOPE. THE TWO NUMBERS ARE NOT EQUAL.”
+
+.model small
+.stack 100h
+.data 
+msg1 db 10,13,"1st no  =$"
+msg2 db 10,13,"2nd no  =$"
+msg3 db 10,13,"YUP. THE TWO NUMBERS ARE EQUAL$"
+msg4 db 10,13,"NOPE. THE TWO NUMBERS ARE NOT EQUAL.$"
+
+.code 
+main proc
+mov ax,@data
+mov ds ,ax
+
+lea dx,msg1
+ mov ah,09h    //displaying 1st message 
+  int 21h
+
+mov ah,01h
+int 21h
+mov cl,al
+
+lea dx,msg2
+ mov ah,09h    //displaying 2nd message 
+  int 21h
+
+mov ah,01h
+int 21h
+mov dl,al
+
+
+cmp cl,dl
+je equal
+
+lea dx,msg4
+ mov ah,09h    //displaying 4th message 
+  int 21h
+
+
+equal :lea dx,msg3
+       mov ah,09h    //displaying 3rd message 
+       int 21h
+
+main endp
+end main
+
+
+
+2.	Write an assembly language program in 8086 to print the following string in reverse:
+“Shawty’s like a melody in my head that I can’t keep out Got me singin’ like”
+(Length of string: 75)
+
+.model small
+.data
+msg db 10,13,"Shawty’s like a melody in my head that I can’t keep out Got me singin’ like$"
+.code
+mov ax,@data
+mov ds,ax
+ main proc
+
+mov si, offset msg
+mov cx,75
+loop1 :  mov bx,[si]
+     	 push bx
+         inc si
+loop loop1
+
+
+mov cx,75
+ loop2: pop dx
+        mov ah,02
+        int 21h
+loop loop2
+
+main endp
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
