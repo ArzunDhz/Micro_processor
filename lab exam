@@ -1,4 +1,35 @@
 
+1.Write an assembly language program in 8085 to transfer 10 data from 5000H
+    to 5100H only if the numbers are greater than 80H, else transfer them to the table starting from 5200H.
+    #Data: 47H, B7H, FFH, 10H, 79H, A7H, 91H, 21H, 81H, 88H
+
+	LXI H, 5000H
+	LXI D, 5100H
+	LXI B, 5200H
+
+loop: 	MOV A,M
+	CPI 80H
+	JC less
+	STAX D
+	INX H
+	INX D
+	MOV A,L
+	CPI 09H
+	JNZ loop
+	HLT
+
+less:	STAX B
+	INX H
+	INX B
+	MOV A,C
+	CPI 09H
+	JNZ XYZ
+	HLT
+
+
+
+
+
 1.	Write an assembly program in 8085 to add the two numbers: 80H and FFH. 
 Then perform the following conditions:
 Conditions:
